@@ -1,78 +1,114 @@
----
-layout: default
-title: Главная
----
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    h1 {
-      color: #ffffff;
-      margin-top: 50px;
-    }
-
-    p {
-      color: #b0b0b0;
-      font-size: 18px;
-    }
-
-    nav {
-      margin-top: 40px;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    nav a {
-      color: #80cbc4;
-      text-decoration: none;
-      font-size: 18px;
-      transition: color 0.3s, border-bottom 0.3s;
-      padding-bottom: 3px;
-    }
-
-    nav a:hover {
-      color: #4dd0e1;
-      border-bottom: 2px solid #4dd0e1;
-    }
-
-    /* Эффект для плавного появления */
-    body {
-      animation: fadeIn 1s ease-in;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <h1>Добро пожаловать!</h1>
-  <p>Это моя первая главная страница на Jekyll 🚀</p>
 
-  <nav>
-    <ul>
-      <li><a href="{{ "/" | relative_url }}">Главная</a></li>
-      <li><a href="{{ "/about/" | relative_url }}">О сайте</a></li>
-      <li><a href="{{ "/blog/" | relative_url }}">Блог</a></li>
-    </ul>
-  </nav>
+  <div class="container">
+
+    <header>
+      <h1>Добро пожаловать!</h1>
+      <p>Это мой личный сайт-портфолио</p>
+
+      <nav>
+        <ul>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#projects">Проекты</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="about">
+  <h2>Обо мне</h2>
+  <div class="card about-card">
+    <img src="images/me.jpg" alt="Моё фото" class="about-photo">
+    <div class="about-text">
+      <h3>Привет! 👋</h3>
+      <p>
+        Сейчас активно развиваюсь в направлении <strong>Python, ML, DL и LLM</strong>.  
+        Это те области, которые мне действительно интересны и в которых хочу расти дальше.
+      </p>
+      <p>
+        Ранее работал с <strong>C#, RevitAPI</strong>, а также имел опыт в <strong>XAML, MVVM</strong>.  
+        Немного знаком с <strong>HTML, CSS и JavaScript</strong>.
+      </p>
+      <p>
+        Мне нравится разбираться в технологиях, искать оптимальные решения и 
+        создавать проекты, которые сочетают практичность и аккуратный дизайн.
+      </p>
+            <div class="contacts-icons">
+        <a href="https://t.me/tomlerconer" target="_blank">
+                <img src="images/telegram.svg" alt="Telegram">
+              </a>
+              <a href="mailto:maksim.vinogradov.official@gmail.com">
+                <img src="images/email.png" alt="Email">
+              </a>
+              <a href="https://github.com/bendylot" target="_blank">
+                <img src="images/github.png" alt="GitHub">
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <section id="projects">
+      <h2>Проекты</h2>
+      <div class="card">
+        <p>Здесь будут мои лучшие проекты с описаниями и ссылками на GitHub.</p>
+      </div>
+    </section>
+
+  <div class="footer-btn">
+      <button id="readBtn">Я прочитал(а) !</button>
+    </div>
+
+  </div> 
+
+<script>
+  const btn = document.getElementById("readBtn");
+
+  btn.addEventListener("click", () => {
+    const rect = btn.getBoundingClientRect();
+    const xCenter = rect.left + rect.width / 2;
+    const yCenter = rect.top + window.scrollY;
+
+    for (let i = 0; i < 12; i++) { // количество сердечек
+      const heart = document.createElement("span");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+
+      // случайное направление
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = 80 + Math.random() * 60;
+      const x = Math.cos(angle) * distance + "px";
+      const y = Math.sin(angle) * distance + "px";
+
+      heart.style.setProperty("--x", x);
+      heart.style.setProperty("--y", y);
+
+      // стартовая позиция
+      heart.style.left = xCenter + "px";
+      heart.style.top = yCenter + "px";
+
+      // случайный размер
+      heart.style.fontSize = 16 + Math.random() * 20 + "px";
+
+      // случайная длительность анимации (скорость)
+      const duration = (0.8 + Math.random() * 0.7).toFixed(2) + "s";
+      heart.style.setProperty("--duration", duration);
+
+      document.body.appendChild(heart);
+
+      // удалить после окончания анимации
+      setTimeout(() => heart.remove(), parseFloat(duration) * 1000);
+    }
+  });
+</script>
+
 </body>
 </html>
+
