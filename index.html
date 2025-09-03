@@ -3,13 +3,76 @@ layout: default
 title: Главная
 ---
 
-<h1>Добро пожаловать!</h1>
-<p>Это моя первая главная страница на Jekyll 🚀</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+      text-align: center;
+    }
 
-<nav>
-  <ul>
-    <li><a href="{{ "/" | relative_url }}">Главная</a></li>
-    <li><a href="{{ "/about/" | relative_url }}">О сайте</a></li>
-    <li><a href="{{ "/blog/" | relative_url }}">Блог</a></li>
-  </ul>
-</nav>
+    h1 {
+      color: #ffffff;
+      margin-top: 50px;
+    }
+
+    p {
+      color: #b0b0b0;
+      font-size: 18px;
+    }
+
+    nav {
+      margin-top: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #80cbc4;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s, border-bottom 0.3s;
+      padding-bottom: 3px;
+    }
+
+    nav a:hover {
+      color: #4dd0e1;
+      border-bottom: 2px solid #4dd0e1;
+    }
+
+    /* Эффект для плавного появления */
+    body {
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Добро пожаловать!</h1>
+  <p>Это моя первая главная страница на Jekyll 🚀</p>
+
+  <nav>
+    <ul>
+      <li><a href="{{ "/" | relative_url }}">Главная</a></li>
+      <li><a href="{{ "/about/" | relative_url }}">О сайте</a></li>
+      <li><a href="{{ "/blog/" | relative_url }}">Блог</a></li>
+    </ul>
+  </nav>
+</body>
+</html>
